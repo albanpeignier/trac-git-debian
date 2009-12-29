@@ -1,3 +1,10 @@
+trac-git (0.0.20090320-1~bpo50+2) lenny-backports; urgency=low
+
+  * debian/patches/ : 0002-ticket-3104-commit-object.patch: uses patch from
+    ticket #3104 to support commit objects (for submodules)
+
+ -- Alban Peignier <alban.peignier@free.fr>  Tue, 29 Dec 2009 12:14:21 +0100
+
 trac-git (0.0.20090320-1~bpo50+1) lenny-backports; urgency=low
 
   * Rebuild for lenny-backports.
