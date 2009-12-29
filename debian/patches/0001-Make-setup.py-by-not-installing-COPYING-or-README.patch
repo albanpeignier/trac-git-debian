@@ -1,0 +1,22 @@
+From 89f443e93dd6d980b4ff2384562547aef8e5014e Mon Sep 17 00:00:00 2001
+From: Jonny Lamb <jonny@debian.org>
+Date: Tue, 17 Feb 2009 19:59:51 +0000
+Subject: [PATCH] Make setup.py by not installing COPYING or README.
+
+debhelper does this for us automatically.
+
+Signed-off-by: Jonny Lamb <jonny@debian.org>
+---
+ 0.11/setup.py |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/0.11/setup.py b/0.11/setup.py
+index 1c7c0f4..54856d5 100755
+--- a/0.11/setup.py
++++ b/0.11/setup.py
+@@ -20,4 +20,4 @@ setup(
+     packages=['tracext', 'tracext.git'],
+     namespace_packages=['tracext'],
+     entry_points = {'trac.plugins': 'git = tracext.git.git_fs'},
+-    data_files=['COPYING','README'])
++    exclude_package_data={'':['COPYING','README']})

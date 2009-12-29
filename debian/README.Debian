@@ -1,0 +1,74 @@
+trac-git for Debian
+-------------------
+
+(This document "borrowed" and altered from the trac-bzr package.)
+
+CONTENTS
+1. Enabling trac-git globally
+2. Enabling trac-git per project
+3. Using a Git repository in a Trac project.
+
+--
+
+Enabling trac-git globally
+
+   To enable, create or edit /etc/trac.ini and add:
+
+    [components]
+    tracext.git.* = enabled
+
+  You must restart tracd for changes to take effect.
+
+--
+
+Enabling trac-git per project
+
+   Edit the <projectenv>/conf/trac.ini file:
+
+     2. Add the following:
+
+       [components]
+       tracext.git.* = enabled
+
+   You must restart tracd for changes to take effect.
+
+--
+
+Using a Git repository in a Trac project.
+
+   Edit the <projectenv>/conf/trac.ini file:
+
+     1. Ensure that the repository_type is set to "git" (without the
+        quotes). This is also asked when creating a Trac environment
+        with the 'trac-admin <projectenv> initenv' command.
+
+     2. Set repository_dir to the directory of the Git repository to
+        be used. Note: the directory should point to the .git part
+	of a Git repository, so if the repository is _not_ bare, it
+	should have a "/.git" suffix.
+
+     3. Find the [git] section and make sure the "git_bin" option points
+        to the exact location of your git binary ("git" is not sufficient;
+	"/usr/bin/git" is).
+
+     4. Add any, or none, of the following configuration options to
+        the [git] section:
+
+        [git]
+        # let Trac cache meta-data via CachedRepository wrapper;
+        # default: false
+        cached_repository = true
+
+        # disable automatic garbage collection for in-memory commit-tree cache;
+        # default: false
+        persistent_cache = true
+
+        # length revision sha-sums should be tried to be abbreviated to (must be >= 4 and <= 40);
+        # default: 7
+        shortrev_len = 6
+
+        # executable file name (optionally with path) of git binary;
+        # default: 'git'
+        git_bin = /usr/src/git-dev/git
+
+ -- Jonny Lamb <jonny@debian.org>  Fri, 11 Jul 2008 01:59:37 +0100

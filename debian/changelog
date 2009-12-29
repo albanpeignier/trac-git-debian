@@ -1,0 +1,88 @@
+trac-git (0.0.20090320-1~bpo50+1) lenny-backports; urgency=low
+
+  * Rebuild for lenny-backports.
+
+ -- Alban Peignier <alban.peignier@free.fr>  Mon, 23 Nov 2009 16:26:08 +0100
+
+trac-git (0.0.20090320-1) unstable; urgency=low
+
+  * New upstream snapshot.
+  * debian/gbp.conf: Removed no-create-orig line.
+  * debian/rules: Upped DATE.
+  * debian/README.source: Added.
+  * debian/control: Bumped Standards-Version to 3.8.1. (No changes)
+  * debian/patches/:
+    + 0002-Prevent-leaving-processes-open-and-running.patch: Removed, fixed
+      upstream.
+    + 0001-Make-setup.py-by-not-installing-COPYING-or-README.patch: Updated.
+
+ -- Jonny Lamb <jonny@debian.org>  Fri, 20 Mar 2009 16:31:31 +0000
+
+trac-git (0.0.20090217-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/gbp.conf: Added git-buildpackage config file.
+  * debian/README.Debian: Use my debian.org email address.
+  * debian/update-patches.mk: Added.
+  * debian/rules:
+    + Include update-patches.mk.
+    + Added get-orig-source target.
+  * debian/patches/01-r4147-add-previous_rev_argument.diff: Removed: already
+    upstream.
+
+ -- Jonny Lamb <jonny@debian.org>  Tue, 17 Feb 2009 20:17:52 +0000
+
+trac-git (0.0.20080710-3) unstable; urgency=medium
+
+  * debian/control: 
+    + Use my debian.org email address.
+  * debian/copyright:
+    + Use my debian.org email address.
+  * debian/patches/:
+    + Added 02-508019-defunct-processes.diff to prevent leaving processes open
+      and running and ultimately making the machine run out of memory.
+      (Closes: #508019)
+
+ -- Jonny Lamb <jonny@debian.org>  Tue, 09 Dec 2008 22:33:37 +0000
+
+trac-git (0.0.20080710-2) unstable; urgency=low
+
+  * debian/patches/01-r4147-add-previous_rev_argument.diff: Added new patch
+    to fix the 500 server error. This is r4147 upstream. (Closes: #498761)
+  * Moved plugin back from gitplugin to original upstream location of
+    tracext.git so my renaming doesn't appear in a stable release.
+  * debian/rules: Moved the patch target dependency to build-stamp to ensure
+    correct dependencies when building in parallel.
+  * debian/control: Removed Provides completely and added misc:Depends on
+    trac-git as the former has no meaning in an arch-indep package.
+
+ -- Jonny Lamb <jonnylamb@jonnylamb.com>  Tue, 30 Sep 2008 18:22:00 +0100
+
+trac-git (0.0.20080710-1) unstable; urgency=low
+
+  * New upstream fork for the 0.11 Trac plugin version. (Closes: #490183)
+  * debian/control:
+    + Removed python-all-dev Build-Dep.
+    + Updated Homepage field.
+    + Upped version of Trac to depend on.
+    + Upped Standards-Version.
+    + Added XS-Python-Version: 2.5.
+  * debian/copyright: Updated.
+  * debian/dirs: Removed.
+  * debian/docs: Updated to point to 0.11 plugin.
+  * debian/postinst: Removed.
+  * debian/rules:
+    + Updated 0.10 references to 0.11.
+    + Added files to be deleted to clean target.
+  * debian/README.Debian: Updated.
+  * debian/patches/disable-installing-docs.diff: Removed.
+  * debian/patches/00-fix-setup.py.diff: Added to fix up the setup.py and
+    rename tracext.git to gitplugin.
+
+ -- Jonny Lamb <jonnylamb@jonnylamb.com>  Sat, 12 Jul 2008 01:43:30 +0100
+
+trac-git (0.0.20080122-1) unstable; urgency=low
+
+  * Initial release. (Closes: #482334)
+
+ -- Jonny Lamb <jonnylamb@jonnylamb.com>  Mon, 19 May 2008 14:33:23 +0100

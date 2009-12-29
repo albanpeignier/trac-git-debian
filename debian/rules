@@ -1,0 +1,59 @@
+#!/usr/bin/make -f
+
+PYVER=$(shell python -c 'import sys; print sys.version[:3]')
+
+include $(CURDIR)/debian/update-patches.mk
+include /usr/share/quilt/quilt.make
+
+clean: unpatch
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp
+	rm -rf dist build
+	-find . -name *\.py[co] -exec rm {} \;
+	dh_clean
+	-for file in PKG-INFO SOURCES.txt dependency_links.txt \
+	    entry_points.txt namespace_packages.txt requires.txt \
+	    top_level.txt; do rm 0.11/TracGit.egg-info/$$file; done
+	-rm -rf 0.11/build/
+
+build: build-stamp
+
+build-stamp: patch
+	dh_testdir
+	cd 0.11 && python setup.py build && cd ..
+	touch $@
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+	cd 0.11 && python setup.py install \
+		--root=$(CURDIR)/debian/trac-git \
+		--single-version-externally-managed && cd ..
+
+binary-indep: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs
+	dh_installdocs
+	dh_pycentral
+	dh_compress -X.py
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary-arch: build install
+
+binary: binary-indep binary-arch
+
+DATE := 20090320
+get-orig-source:
+	svn export http://trac-hacks.org/svn/gitplugin ../trac-git-0.0.$(DATE)
+	tar pczf ../trac-git_0.0.$(DATE).orig.tar.gz ../trac-git-0.0.$(DATE)
+	rm -rf ../trac-git-0.0.$(DATE)
+
+.PHONY: build clean binary-indep binary-arch binary install configure

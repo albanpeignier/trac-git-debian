@@ -1,0 +1,19 @@
+Source: trac-git
+Maintainer: Jonny Lamb <jonny@debian.org>
+Section: python
+Priority: optional
+Build-Depends: debhelper (>= 5.0), quilt (>= 0.40)
+Build-Depends-Indep: python, python-central (>= 0.5), python-setuptools
+Standards-Version: 3.8.1
+XS-Python-Version: 2.5
+Homepage: http://trac-hacks.org/wiki/GitPlugin
+Vcs-Git: git://git.jonnylamb.com/git/packaging/trac-git.git
+Vcs-Browser: http://git.jonnylamb.com/?p=packaging/trac-git.git;a=summary
+
+Package: trac-git
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}, trac (>= 0.11), git-core
+XB-Python-Version: ${python:Versions}
+Description: Git version control backend for Trac
+ A plugin that provides support for the Git source code management
+ tool for Edgewall Software's Trac.
